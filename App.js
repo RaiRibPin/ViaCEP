@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { PaperProvider, TextInput, Text, Button } from 'react-native-paper';    
 
 export default function App() {
@@ -34,7 +34,17 @@ export default function App() {
                     <TextInput style={{backgroundColor:'#FFF'}} label={'CEP:'} mode='outlined' onChangeText={(value)=>{setCep(value)}} />
                     <Button icon={"tab-search"} onPress={()=>{BuscaCep(cep)}} 
                     mode='contained' style={{marginTop:20}}>Busca</Button>
+
+                    <TextInput label={'Endereço: '} value={render['logradouro']} mode='outlined' onChangeText={(value)=>{setCep(value)}} />
+                    <TextInput label={'Bairro: '} value={render['bairro']} mode='outlined' onChangeText={(value)=>{setCep(value)}} />
+                    <TextInput label={'Cidade: '} value={render['localidade']} mode='outlined' onChangeText={(value)=>{setCep(value)}} />
+                    <TextInput label={'Estado: '} value={render['estado']} mode='outlined' onChangeText={(value)=>{setCep(value)}} />
+
+                    <Button icon={"tab-"} onPress={()=>{BuscaCep(cep)}} 
+                    mode='contained' style={{marginTop:20}}>Busca</Button>
+
                 </View>
             </PaperProvider>    
     );
+
 };  

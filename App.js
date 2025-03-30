@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, ScrollView } from 'react-native';
-import { Text, TextInput, Button, List, Icon, Divider } from 'react-native-paper';
+import { View, Image, ScrollView } from 'react-native';
+import { Text, TextInput, Button, List, Divider, Portal, Dialog } from 'react-native-paper';
 import style from './Style';
 
 export default function App() {
@@ -29,6 +29,7 @@ export default function App() {
             ).then(
                 (dados)=>{
                     console.log(dados);
+                    console.log('Nome: '(nome))
                     setRender(dados);
                     setSelectedValue(render.uf);
                     
@@ -40,19 +41,20 @@ export default function App() {
 
     return (
             <ScrollView style = {{ marginTop: 50, marginHorizontal:20}}>
-                <View>
-                    <Text style={{color:'#A7C'}}>Preencha com seus dados</Text>
-                    <Divider/>
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8' value={nome} placeholderTextColor={'#0A8'} placeholder='Digite seu nome...' label={'Nome:'} mode='outlined' onChangeText={nome=>setNome(nome)} />
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8' value={email} placeholderTextColor={'#0A8'} placeholder='Digite seu email...' label={'Email:'} mode='outlined' onChangeText={email=>setEmail(email)} />
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8' value={cep} placeholderTextColor={'#0A8'} placeholder='Digite seu CEP...' label={'CEP:'} mode='outlined' onChangeText={(cep)=>{setCep(cep)}} />
-                    <Button icon={"home-search"} buttonColor='#90FEB8' rippleColor={'#62DE8F'} onPress={()=>{BuscaCep(cep)}} mode='contained-tonal' style={{marginTop:20}}>Busca</Button>
+                <View style={{flex:1, display:'flex', justifyItems:'center', alignItems:'center'}}>
+                    <Image style={style.image} source={require('./assets/location.png')} />
+                    <Text style={style.title} variant='displaySmall'>Preencha com seus dados</Text>
+                    <Divider style={style.divider} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8' value={nome} placeholderTextColor={'#0A8'} placeholder='Digite seu nome...' label={'Nome:'} mode='outlined' onChangeText={nome=>setNome(nome)} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8' value={email} placeholderTextColor={'#0A8'} placeholder='Digite seu email...' label={'Email:'} mode='outlined' onChangeText={email=>setEmail(email)} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8' value={cep} placeholderTextColor={'#0A8'} placeholder='Digite seu CEP...' label={'CEP:'} mode='outlined' onChangeText={(cep)=>{setCep(cep)}} />
+                    <Button style={style.button} icon={"home-search"} buttonColor='#90FEB8' rippleColor={'#62DE8F'} onPress={()=>{BuscaCep(cep)}} mode='contained-tonal'>Busca</Button>
 
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8'  label={'Número: '} value={numero} mode='outlined' onChangeText={numero=>setNumero(numero)} />
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8'  label={'Complemento: '} value={complemento} mode='outlined' onChangeText={complemento=>setComplemento(complemento)} />
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8'  label={'Rua: '} value={render.logradouro} mode='outlined' onChangeText={(value)=>{setRender(render.logradouro = value)}} />
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8'  label={'Bairro: '} value={render.bairro} mode='outlined' onChangeText={(value)=>{setRender(render.bairro = value)}} />
-                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' textColor='#0A8'  label={'Cidade: '} value={render.localidade} mode='outlined' onChangeText={(value)=>{setRender(render.localidade = value)}} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8'  label={'Rua: '} value={render.logradouro} mode='outlined' onChangeText={(value)=>{setRender(render.logradouro = value)}} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8'  label={'Número: '} value={numero} mode='outlined' onChangeText={numero=>setNumero(numero)} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8'  label={'Complemento: '} value={complemento} mode='outlined' onChangeText={complemento=>setComplemento(complemento)} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8'  label={'Bairro: '} value={render.bairro} mode='outlined' onChangeText={(value)=>{setRender(render.bairro = value)}} />
+                    <TextInput style={style.textInput} activeOutlineColor='#0A7' outlineColor='#0A7' outlineStyle={{borderRadius:'10px', borderWidth: '2px'}} textColor='#0A8'  label={'Cidade: '} value={render.localidade} mode='outlined' onChangeText={(value)=>{setRender(render.localidade = value)}} />
                     <List.Section>
                         <List.Accordion title={ selectedValue == null? "Selecione o Estado":selectedValue } expanded={expanded} onPress={handleAccordionPress}>
                             <List.Item title="Acre" onPress={() => handleItemPress("AC")} />

@@ -4,9 +4,26 @@ const style = StyleSheet.create ({
     textInput: {
         color: '#0EC',
         backgroundColor: '#FFF',
-        paddingVertical:'40px',
+        paddingVertical:'10px',
         paddingHorizontal:'30px',
-        fontSize: 20
+        marginBottom: '10px',
+        fontSize: 20,
+    },
+    title: {
+        marginBottom: '10px',
+        color: '#075',
+        fontWeight: '600'
+    },
+    divider: {
+        marginBottom: '15px',
+    },
+    image: {
+        width: '250px',
+        height: '250px'
+    },
+    button: {
+        marginBottom: '20px',
+        marginTop: '20px',
     },
 });
 

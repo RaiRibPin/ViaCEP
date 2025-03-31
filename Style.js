@@ -4,27 +4,39 @@ const style = StyleSheet.create ({
     textInput: {
         color: '#0EC',
         backgroundColor: '#FFF',
-        paddingVertical:'10px',
-        paddingHorizontal:'30px',
-        marginBottom: '10px',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        marginBottom: 10,
         fontSize: 20,
     },
     title: {
-        marginBottom: '10px',
         color: '#075',
-        fontWeight: '600'
+        textAlign: 'center',
+        fontWeight: 900,
     },
-    divider: {
-        marginBottom: '15px',
+    subtitle: {
+        color: '#097',
+        textAlign: 'center',
+        marginBottom: 20,
     },
     image: {
-        width: '250px',
-        height: '250px'
+        width: 200,
+        height: 200,
+        marginBottom: 20,
+        alignSelf: 'center',
     },
     button: {
-        marginBottom: '20px',
-        marginTop: '20px',
+        marginVertical: 30,
+        marginHorizontal: 10,
     },
+    accordionTitle: {
+        fontWeight: '700',
+        color: '#075',
+    },
+    accordion: {
+        borderRadius: 10,
+        backgroundColor: '#D3EADE',
+    }
 });
 
 export default style;
